@@ -173,13 +173,6 @@ switch:
     payload_on: "ON"
     payload_off: "OFF"
   - platform: mqtt
-    name: "Chris Home"
-    state_topic: "loc-state/loc-chrisn/presence"
-    command_topic: "loc-cmnd/loc-chrisn/presence"
-    qos: 1
-    payload_on: "YES"
-    payload_off: "NO"
-  - platform: mqtt
     name: "Sonoff Charlies Room"
     state_topic: "stat/sonoff-familyroom/POWER1"
     command_topic: "cmnd/sonoff-familyroom/POWER1"
