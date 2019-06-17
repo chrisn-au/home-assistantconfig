@@ -71,6 +71,41 @@ light:
     payload_off: "off"
     retain: false
     optimistic: false
+  - platform: mqtt
+    name: "Sonoff Spare"
+    state_topic: "stat/sonoff-bedroom/POWER1"
+    command_topic: "cmnd/sonoff-bedroom/POWER1"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+  - platform: mqtt
+    name: "Sonoff Hallway"
+    state_topic: "stat/sonoff-hallway/POWER1"
+    command_topic: "cmnd/sonoff-hallway/POWER1"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+  - platform: mqtt
+    name: "Sonoff Pool"
+    state_topic: "stat/sonoff-pool/POWER1"
+    command_topic: "cmnd/sonoff-pool/POWER1"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+  - platform: mqtt
+    name: "Sonoff Bedroom"
+    state_topic: "stat/sonoff-tree/POWER1"
+    command_topic: "cmnd/sonoff-tree/POWER1"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+  - platform: mqtt
+    name: "Sonoff Study"
+    state_topic: "stat/sonoff-study/POWER1"
+    command_topic: "cmnd/sonoff-study/POWER1"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
 
 
 # Enables a map showing the location of tracked devices
@@ -123,41 +158,6 @@ sensor:
 ios:
 
 switch:
-  - platform: mqtt
-    name: "Sonoff Spare"
-    state_topic: "stat/sonoff-bedroom/POWER1"
-    command_topic: "cmnd/sonoff-bedroom/POWER1"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-  - platform: mqtt
-    name: "Sonoff Hallway"
-    state_topic: "stat/sonoff-hallway/POWER1"
-    command_topic: "cmnd/sonoff-hallway/POWER1"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-  - platform: mqtt
-    name: "Sonoff Pool"
-    state_topic: "stat/sonoff-pool/POWER1"
-    command_topic: "cmnd/sonoff-pool/POWER1"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-  - platform: mqtt
-    name: "Sonoff Bedroom"
-    state_topic: "stat/sonoff-tree/POWER1"
-    command_topic: "cmnd/sonoff-tree/POWER1"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
-  - platform: mqtt
-    name: "Sonoff Study"
-    state_topic: "stat/sonoff-study/POWER1"
-    command_topic: "cmnd/sonoff-study/POWER1"
-    qos: 1
-    payload_on: "ON"
-    payload_off: "OFF"
   - platform: mqtt
     name: "Escea Fireplace"
     state_topic: "ESCEA-Thermostat/60300/state"
