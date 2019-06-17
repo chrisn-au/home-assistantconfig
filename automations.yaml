@@ -45,3 +45,12 @@
   action:
     service: light.turn_off
     entity_id: light.folly_lights
+- id: '1539029645700'
+  alias: Start HomeKit
+  trigger:
+  - event: start
+    platform: homeassistant
+  condition: []
+  action:
+  - delay: 00:01
+  - service: homekit.start

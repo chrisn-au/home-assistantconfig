@@ -47,6 +47,7 @@ discovery:
 
 homekit:
   name: Mac Virtual
+  auto_start: False
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
