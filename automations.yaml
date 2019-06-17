@@ -1,0 +1,47 @@
+- id: '1541305802519'
+  alias: Pool off after 2
+  initial_state: 'on'
+  trigger:
+  - minutes: '/5'
+    platform: time_pattern
+    seconds: 0
+  condition:
+  - below: '800'
+    condition: numeric_state
+    entity_id: sensor.pool_average_mean
+  - after: '14:00:00'
+    condition: time
+  action:
+  - entity_id: switch.sonoff_pool
+    service: switch.turn_off
+- id: '1550787278584'
+  alias: pool on at 10
+  initial_state: 'on'
+  trigger:
+  - at: '10:00:00'
+    platform: time
+  condition: []
+  action:
+  - service: switch.turn_on
+    entity_id: switch.sonoff_pool
+- id: 'Lights on at sunset'
+  alias: lights on at sunset
+  initial_state: 'on'
+  trigger:
+    platform: sun
+    event: sunset
+    offset: "-00:45:00"
+  condition: []
+  action:
+    service: light.turn_on
+    entity_id: light.folly_lights 
+- id: 'Lights off at 10:30'
+  alias: lights of at 1030
+  initial_state: 'on'
+  trigger:
+  - at: '22:30:00'
+    platform: time
+  condition: []
+  action:
+    service: light.turn_off
+    entity_id: light.folly_lights

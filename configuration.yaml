@@ -1,0 +1,209 @@
+homeassistant:
+  # Name of the location where Home Assistant is running
+  name: Home
+  # Location required to calculate the time the sun rises and sets
+  latitude: -33.839
+  longitude: 151.2396
+  # Impacts weather/sunrise data (altitude above sea level in meters)
+  elevation: 18
+  # metric for Metric, imperial for Imperial
+  unit_system: metric
+  # Pick yours from here: http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  time_zone: Australia/Sydney
+  # Customization file
+  customize: !include customize.yaml
+
+# Show links to resources in log and frontend
+
+# Enables the frontend
+frontend:
+
+# Enables configuration UI
+config:
+
+media_player:
+  - platform: plex
+
+http:
+  # Secrets are defined in the file secrets.yaml
+  api_password: !secret http_password
+  # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+  base_url: cackn.duckdns.org:8123
+  ssl_certificate: /ssl/fullchain.pem
+  ssl_key: /ssl/privkey.pem
+
+
+# Checks for available updates
+# Note: This component will send some information about your system to
+# the developers to assist with development of Home Assistant.
+# For more information, please see:
+# https://home-assistant.io/blog/2016/10/25/explaining-the-updater/
+updater:
+  # Optional, allows Home Assistant developers to focus on popular components.
+  # include_used_components: true
+
+# Discover some devices automatically
+discovery:
+
+homekit:
+  name: Mac Virtual
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+
+# Enables support for tracking state changes over time
+history:
+
+# View all events in a logbook
+logbook:
+
+light:
+  - platform: hue
+    host: 192.168.0.5
+  - platform: lifx
+  - platform: mqtt
+    name: "Folly Lights"
+    state_topic: "shellies/shelly1-32B4A7/relay/0"
+    command_topic: "shellies/shelly1-32B4A7/relay/0/command"
+    qos: 2
+    payload_on: "on"
+    payload_off: "off"
+    retain: false
+    optimistic: false
+
+
+# Enables a map showing the location of tracked devices
+map:
+
+mqtt:
+  broker: 192.168.0.127
+
+mqtt_eventstream:
+  publish_topic: MyServerName
+  subscribe_topic: OtherHaServerName
+
+
+mqtt_statestream:
+  base_topic: homeassistant
+  publish_attributes: true
+  publish_timestamps: true
+
+binary_sensor:
+  - platform: mqtt
+    name: "Hallway motion"
+    state_topic: "BLESENSOR/motion/hallway/report"
+    payload_on: 1
+    payload_off: 0
+    device_class: motion
+
+sensor:
+  - platform: mqtt
+    name: "Study Temperature"
+    state_topic: "BLESENSOR/temperature/study-temp/report"
+    unit_of_measurement: '°C'
+    expire_after: 7200
+  - platform: mqtt
+    name: Pool Power
+    state_topic: "tele/sonoff-pool/SENSOR"
+    value_template: '{{ value_json["ENERGY"]["Power"] }}'
+    unit_of_measurement: 'kWh'
+  - platform: statistics
+    name: Pool average
+    entity_id: sensor.pool_power
+    sampling_size: 6
+  - platform: yr
+  - platform: template
+    sensors:
+      washer_watts:
+        friendly_name: "Washing Machine Power"
+        unit_of_measurement: "w"
+        value_template: '{% if states.switch.wemo_spare %}{{ states.switch.wemo_spare.attributes.current_power_w }}{% else %}Off{% endif %}'
+
+ios:
+
+switch:
+  - platform: mqtt
+    name: "Sonoff Spare"
+    state_topic: "stat/sonoff-bedroom/POWER1"
+    command_topic: "cmnd/sonoff-bedroom/POWER1"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+  - platform: mqtt
+    name: "Sonoff Hallway"
+    state_topic: "stat/sonoff-hallway/POWER1"
+    command_topic: "cmnd/sonoff-hallway/POWER1"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+  - platform: mqtt
+    name: "Sonoff Pool"
+    state_topic: "stat/sonoff-pool/POWER1"
+    command_topic: "cmnd/sonoff-pool/POWER1"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+  - platform: mqtt
+    name: "Sonoff Bedroom"
+    state_topic: "stat/sonoff-tree/POWER1"
+    command_topic: "cmnd/sonoff-tree/POWER1"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+  - platform: mqtt
+    name: "Sonoff Study"
+    state_topic: "stat/sonoff-study/POWER1"
+    command_topic: "cmnd/sonoff-study/POWER1"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+  - platform: mqtt
+    name: "Escea Fireplace"
+    state_topic: "ESCEA-Thermostat/60300/state"
+    command_topic: "ESCEA-Thermostat/60300/control/state"
+    qos: 1
+    payload_on: "1"
+    payload_off: "0"
+  - platform: mqtt
+    name: "Sonoff Bathroom"
+    state_topic: "stat/sonoff-boysbr/POWER1"
+    command_topic: "cmnd/sonoff-boysbr/POWER1"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+  - platform: mqtt
+    name: "Chris Home"
+    state_topic: "loc-state/loc-chrisn/presence"
+    command_topic: "loc-cmnd/loc-chrisn/presence"
+    qos: 1
+    payload_on: "YES"
+    payload_off: "NO"
+  - platform: mqtt
+    name: "Sonoff Charlies Room"
+    state_topic: "stat/sonoff-familyroom/POWER1"
+    command_topic: "cmnd/sonoff-familyroom/POWER1"
+    qos: 1
+    payload_on: "ON"
+    payload_off: "OFF"
+
+input_boolean:
+  cn_athome:
+    name: Chris N at home
+    initial: on
+# Track the sun
+sun:
+
+# Weather prediction
+
+wemo:
+# Text to speech
+tts:
+  - platform: google_translate
+    service_name: google_say
+
+# Cloud
+cloud:
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml

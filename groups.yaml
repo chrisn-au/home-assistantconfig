@@ -1,0 +1,20 @@
+lounge:
+  name: Lounge
+  view: true
+  entities:
+    -  light.nook_2
+outside:
+  name: Outside BBQ 
+  view: true
+  entities:
+    - light.folly_lights
+bed:
+  name: Night
+  view: true
+  entities:
+    - light.nook
+    - light.spot
+    - light.dining_north
+    - light.folly_lights
+    - switch.sonoff_hallway
+    - switch.sonoff_study

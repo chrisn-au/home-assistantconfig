@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<aircast>
+<common>
+<enabled>1</enabled>
+<stop_receiver>0</stop_receiver>
+<media_volume>1.0000</media_volume>
+<latency></latency>
+<codec>flac</codec>
+<artwork></artwork>
+<drift>0</drift>
+<metadata>1</metadata>
+</common>
+<main_log>info</main_log>
+<cast_log>info</cast_log>
+<util_log>warn</util_log>
+<log_limit>-1</log_limit>
+<device>
+<udn>e6e4346fa97839d519bdd4a375206380</udn>
+<name>Bedroom TV+</name>
+<mac>cc:cc:a5:f9:f3:f6</mac>
+<enabled>1</enabled>
+</device>
+<device>
+<udn>b105d2d05c4a00dd2ff8a071f278c4c1</udn>
+<name>Office Speaker+</name>
+<mac>cc:cc:5d:d9:df:6c</mac>
+<enabled>1</enabled>
+</device>
+<device>
+<udn>913aa28594a581f73e667e300a7ee474</udn>
+<name>Family Room TV+</name>
+<mac>cc:cc:e0:5b:c8:63</mac>
+<enabled>1</enabled>
+</device>
+</aircast>
