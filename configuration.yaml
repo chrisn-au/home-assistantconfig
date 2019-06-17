@@ -116,7 +116,7 @@ sensor:
   - platform: template
     sensors:
       washer_watts:
-        friendly_name: "Washing Machine Power"
+        friendly_name: "Wemo spare Power"
         unit_of_measurement: "w"
         value_template: '{% if states.switch.wemo_spare %}{{ states.switch.wemo_spare.attributes.current_power_w }}{% else %}Off{% endif %}'
 
